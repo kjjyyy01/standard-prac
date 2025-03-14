@@ -1,6 +1,11 @@
-import { Todos } from "./TodoList";
+"use client";
 
-const TodoItem = ({ todo }: { todo: Todos }) => {
+import { useRouter } from "next/navigation";
+import { Todo } from "./TodoList";
+import Image from "next/image";
+
+function TodoItem({ todo }: { todo: Todo }) {
+  const router = useRouter();
   return (
     <li
       key={todo.id}
@@ -11,12 +16,12 @@ const TodoItem = ({ todo }: { todo: Todos }) => {
       }}
     >
       <h3>{todo.title}</h3>
-      <img src={`${todo.imgPath}?random=${Math.random()}`} alt="투두 이미지" width={50} height={50} />
+      <Image src={`${todo.imgPath}?random=${Math.random()}`} alt="투두 이미지" width={50} height={50} />
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <button onClick={() => navigate(`/todolist/${todo.id}`)}>내용보기</button>
+        <button onClick={() => router.push(`/todolist/${todo.id}`)}>내용보기</button>
       </div>
     </li>
   );
-};
+}
 
 export default TodoItem;

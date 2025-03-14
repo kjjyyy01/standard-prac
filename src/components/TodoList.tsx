@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import TodoItem from "./TodoItem";
 
-export type Todos = {
-  id: string;
+export type Todo = {
+  id: number;
   title: string;
   contents: string;
   isCompleted: boolean;
@@ -15,9 +15,9 @@ const TodoList = () => {
     data: todos,
     isPending,
     error,
-  } = useQuery({
+  } = useQuery<Todo[]>({
     queryKey: ["todos"],
-    queryFn: async (): Promise<Todos[]> => {
+    queryFn: async () => {
       const response = await fetch(`http://localhost:4000/todos`);
       if (!response.ok) {
         throw new Error("Failed to fetch todos");
@@ -41,11 +41,13 @@ const TodoList = () => {
   }
 
   return (
-    <ul style={{ listStyle: "none", width: 250 }}>
-      {todos.map((todo) => {
-        return <TodoItem key={todo.id} todo={todo} />;
-      })}
-    </ul>
+    <>
+      <ul style={{ listStyle: "none", width: 250 }}>
+        {todos.map((todo) => {
+          return <TodoItem key={todo.id} todo={todo} />;
+        })}
+      </ul>
+    </>
   );
 };
 

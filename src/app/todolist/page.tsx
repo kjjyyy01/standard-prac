@@ -1,7 +1,7 @@
 import TodoForm from "@/components/TodoForm";
 import TodoList from "@/components/TodoList";
 
-const Todolist = () => {
+const TodoListPage = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       <h2 className="blog-main-title">서버통신 투두리스트 by useState</h2>
@@ -18,4 +18,4 @@ const Todolist = () => {
   );
 };
 
-export default Todolist;
+export default TodoListPage;
